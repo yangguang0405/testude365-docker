@@ -8,8 +8,7 @@ ADD . /app
 
 # Install required packages
 RUN apt-get update && \
-    apt-get --assume-yes install openjdk-8-jdk && \
-    apt-get --assume-yes install build-essential curl git m4 ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev && \
+    apt-get --assume-yes install openjdk-8-jdk build-essential wget curl git m4 ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev && \
     wget "https://nodejs.org/download/release/latest-v8.x/node-v8.5.0-linux-x64.tar.gz" && \
     tar -xvf node-v8.5.0-linux-x64 && \
     export PATH=$PATH:~/node-v8.5.0-linux-x64/bin && \
