@@ -6,6 +6,10 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 ADD . /app
 
+RUN useradd --system -s /sbin/nologin setupuser
+
+USER setupuser
+
 # Install required packages
 RUN apt-get update && \
     apt-get --assume-yes install openjdk-8-jdk && \
