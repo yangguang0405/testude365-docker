@@ -6,15 +6,17 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 ADD . /app
 
+# Install required packages
+RUN apt-get update && \
+    apt-get --assume-yes install openjdk-8-jdk && \
+    apt-get --assume-yes install build-essential curl git m4 ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev
+
 RUN useradd --system -s /sbin/nologin setupuser
 
 USER setupuser
 
 # Install required packages
-RUN apt-get update && \
-    apt-get --assume-yes install openjdk-8-jdk && \
-    apt-get --assume-yes install build-essential curl git m4 ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev && \
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)" && \
+RUN ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)" && \
     test -d ~/.linuxbrew && PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH" && \
     test -d /home/linuxbrew/.linuxbrew && PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH" && \
     test -r ~/.bash_profile && echo 'export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"' >>~/.bash_profile && \
