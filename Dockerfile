@@ -12,7 +12,7 @@ RUN apt-get update && \
     wget "https://nodejs.org/download/release/latest-v8.x/node-v8.5.0-linux-x64.tar.gz" -O ~/node-v8.5.0-linux-x64.tar.gz && \
     tar -xvf ~/node-v8.5.0-linux-x64.tar.gz && \
     export PATH=$PATH:~/node-v8.5.0-linux-x64/bin && \
-    npm install -g appium
+    ~/node-v8.5.0-linux-x64/bin/npm install -g appium
 
 
 #     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)" && \
